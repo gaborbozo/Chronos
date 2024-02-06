@@ -1,34 +1,31 @@
 package hu.bozgab.chronos.orion.events;
 
-import hu.bozgab.chronos.orion.events.interfaces.IEvent;
+import hu.bozgab.chronos.orion.events.interfaces.IEventExecutor;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class ClearEvent implements IEvent {
+public class ClearEvent extends AbstractEventHandler {
 
-    @Override
-    public String command() {
-        return "clear";
+    public ClearEvent(){
+        events.put("clear", clear);
     }
 
-    @Override
-    public void execute(MessageReceivedEvent event, String... params) {
+    static IEventExecutor clear = (event, params) -> {
         try {
-            if (params.length >= 1) {
-                int n = Integer.parseInt(params[0]);
+            if (params.length >= 2) {
+                int n = Integer.parseInt(params[1]);
                 List<Message> messageList = event.getChannel().getHistory().retrievePast(n + 1).complete();
                 event.getChannel().asGuildMessageChannel().deleteMessages(messageList).queue();
             }
         } catch (NumberFormatException e) {
             event.getChannel().sendMessage("**Error!**\n").addContent("\nGiven argument is not a number").queue();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             event.getChannel().sendMessage("**Error!**\n").addContent("\nSome messages are trying to be deleted were sent more than two weeks ago").queue();
-        } catch (Exception e){
+        } catch (Exception e) {
             event.getChannel().sendMessage("**Error!**\n").addContent("\n" + e.getMessage()).queue();
         }
-    }
+    };
 }
