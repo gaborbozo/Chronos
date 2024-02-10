@@ -1,13 +1,9 @@
 package hu.bozgab.chronos.orion.events;
 
-import hu.bozgab.chronos.orion.events.interfaces.IEventHandler;
 import hu.bozgab.chronos.orion.events.interfaces.IEventExecutor;
-import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
-@Component
+@Service
 public class PingEvent extends AbstractEventHandler {
 
     public PingEvent(){

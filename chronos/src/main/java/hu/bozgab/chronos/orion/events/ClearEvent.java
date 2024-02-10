@@ -2,11 +2,11 @@ package hu.bozgab.chronos.orion.events;
 
 import hu.bozgab.chronos.orion.events.interfaces.IEventExecutor;
 import net.dv8tion.jda.api.entities.Message;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class ClearEvent extends AbstractEventHandler {
 
     public ClearEvent(){
