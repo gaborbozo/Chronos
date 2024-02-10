@@ -27,7 +27,6 @@ public class OrionEventListener extends ListenerAdapter {
     public OrionEventListener(List<IEventHandler> eventHandlers) {
         this.eventHandlers = eventHandlers;
         buildEventsMap();
-        System.out.println(events.keySet());
     }
 
     private void buildEventsMap(){
