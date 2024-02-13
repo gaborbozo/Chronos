@@ -23,8 +23,8 @@ public class OrionInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws InterruptedException {
         JDA jda = JDABuilder
-                .createLight("token",
-                        GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS)
+                .createDefault(token,
+                        GatewayIntent.GUILD_MESSAGES, GatewayIntent.MESSAGE_CONTENT, GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_VOICE_STATES)
                 .addEventListeners(orionEventListener)
                 .build();
 
